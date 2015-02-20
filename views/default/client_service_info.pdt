@@ -1,0 +1,10 @@
+	<div class="table-responsive">
+		<table class="table table-curved table-striped">
+			<tbody>
+				<tr>
+					<td></td>
+					<td><a href="<?php $this->Html->_($module_row->meta->hostname);?>" target="_BLANK">Login to TCAdmin</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>

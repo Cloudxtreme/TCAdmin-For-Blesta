@@ -1,0 +1,20 @@
+{
+    "version": "0.0.1",
+    "name": "Tcadmin.name",
+    "description": "The game hosting control panel",
+	"authors": [
+		{
+			"name": "Jamie Sage",
+			"url": "https://www.jamies-servers.co.uk"
+		}
+	],
+    "service": {
+        "name_key": "tcadmin_socket"
+    },
+    "module": {
+        "row": "Server",
+        "rows": "Servers",
+        "group": "Servers",
+        "row_key": "server_name"
+    }
+}

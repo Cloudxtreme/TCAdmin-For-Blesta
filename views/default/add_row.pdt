@@ -1,0 +1,36 @@
+		<?php
+		$this->Widget->clear();
+		$this->Widget->create($this->_("Tcadmin.manage.title", true));
+		?>
+		<div class="inner">
+			<?php
+			$this->Form->create();
+			?>
+			<div class="title_row first">
+				<h3><?php $this->_("Tcadmin.manage.addrow");?></h3>
+			</div>
+			<div class="pad">
+				<ul>
+					<li>
+        	            <?php $this->Form->label($this->_("Tcadmin.manage.hostname", true), "hostname"); $this->Form->fieldText("hostname", $this->Html->ifSet($vars->hostname), array('id' => "hostname")); ?>
+        	            <span class="tooltip"><?php $this->_("AppController.tooltip.text");?><div><?php $this->_("Tcadmin.!tooltip.hostname");?></div></span>
+        	        </li>
+        	        <li>
+        	            <?php $this->Form->label($this->_("Tcadmin.manage.username", true), "username"); $this->Form->fieldText("username", $this->Html->ifSet($vars->username), array('id' => "username")); ?>
+        	            <span class="tooltip"><?php $this->_("AppController.tooltip.text");?><div><?php $this->_("Tcadmin.!tooltip.username");?></div></span>
+        	        </li>
+        	        <li>
+        	            <?php $this->Form->label($this->_("Tcadmin.manage.password", true), "password"); $this->Form->fieldText("password", $this->Html->ifSet($vars->password), array('id' => "password", 'type' => "password")); ?>
+        	            <span class="tooltip"><?php $this->_("AppController.tooltip.text");?><div><?php $this->_("Tcadmin.!tooltip.password");?></div></span>
+        	        </li>
+				</ul>
+			</div>
+		           
+			<div class="button_row"><a class="btn_right submit" href="#"><?php $this->_("Tcadmin.manage.submit");?></a></div>
+			<?php
+			$this->Form->end();
+			?>
+		</div>
+		<?php
+		$this->Widget->end();
+		?>
