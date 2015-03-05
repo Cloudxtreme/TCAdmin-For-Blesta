@@ -21,15 +21,55 @@
 			<tr class="heading_row">
                 <td><span><?php $this->_("Tcadmin.manage.hostname");?></span></td>
 				<td><span><?php $this->_("Tcadmin.manage.username");?></span></td>
+				<td width="50px"><span>Status</span></td>
 				<td class="last"><span><?php $this->_("Tcadmin.manage.module_rows_heading.options");?></span></td>
 			</tr>
 			<?php
 			for ($i=0; $i<$num_rows; $i++) {
 			?>
 			<tr<?php echo ($i%2 == 1) ? " class=\"odd_row\"" : "";?>>
-				<td><?php $this->Html->_($module->rows[$i]->meta->hostname);?></td>
-                <td><?php $this->Html->_($module->rows[$i]->meta->username);?></td>
+				<td><?php $this->Html->_($module->rows[$i]->meta->hostname); ?></td>
+                <td><?php $this->Html->_($module->rows[$i]->meta->username); ?></td>
+				<td style="text-align: center;">
+					<?php
+					// Lets verify the login details
+					$fields = array(
+						'tcadmin_username'  	=> $module->rows[$i]->meta->username,
+						'tcadmin_password'  	=> $module->rows[$i]->meta->password,
+						'function'				=> 'GetSupportedGames',
+						'response_type'     	=> 'xml'
+					);
+
+					$data = FALSE;
+
+					$ch = curl_init();
+					curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+					curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+					curl_setopt($ch, CURLOPT_CAINFO, NULL);
+					curl_setopt($ch, CURLOPT_CAPATH, NULL); 
+					curl_setopt($ch, CURLOPT_URL, $module->rows[$i]->meta->hostname);
+					curl_setopt($ch, CURLOPT_POST, TRUE);
+					curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15);
+					curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+					curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($fields));
+					curl_setopt($ch, CURLOPT_HTTPHEADER, array('Expect:', 'Accept-Charset: UTF-8'));
+					$data = curl_exec($ch);
+
+					if($data === FALSE)
+					{
+					    echo "<img src='http://i.imgur.com/2XE3WAo.png' width='25' alt='Error' title='Error - Failed to connect to TCAdmin with login details' />";
+					}
+					else
+					{
+					    echo "<img src='http://i.imgur.com/iQDy4CR.png' width='25' alt='Success' title='Success - Connection to TCAdmin was successful' />";
+					}
+
+					curl_close($ch);
+					?>
+				</td>
 				<td>
+
 					<a href="<?php echo $this->Html->safe($this->base_uri . "settings/company/modules/editrow/" . $this->Html->ifSet($module->id) . "/" . $this->Html->ifSet($module->rows[$i]->id) . "/");?>"><?php $this->_("Tcadmin.manage.module_rows.edit");?></a>
 					<?php
 					$this->Form->create($this->base_uri . "settings/company/modules/deleterow/");

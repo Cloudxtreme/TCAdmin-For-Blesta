@@ -70,9 +70,9 @@ class TcadminApi {
         $tc_pass = $this->generate_password();
         $tc_service_id = $this->getNextServiceID();
         $overwrite_g_slots = (isset($package->meta->master_game_slots) ? $package->meta->master_game_slots : 0);
-        $game_slots = (isset($vars['configoptions']['game_slots']) ? $vars['configoptions']['game_slots'] : 0);
+        $game_slots = (isset($vars['configoptions']['game_slots']) ? $vars['configoptions']['game_slots'] : 10);
         $overwrite_v_slots = (isset($package->meta->master_voice_slots) ? $package->meta->master_voice_slots : 0);
-        $voice_slots = (isset($vars['configoptions']['voice_slots']) ? $vars['configoptions']['voice_slots'] : 0);
+        $voice_slots = (isset($vars['configoptions']['voice_slots']) ? $vars['configoptions']['voice_slots'] : 10);
 
         if($overwrite_g_slots != 0 || $overwrite_g_slots != "") $game_slots = $overwrite_g_slots;
         if($overwrite_v_slots != 0 || $overwrite_v_slots != "") $voice_slots = $overwrite_v_slots;
@@ -88,7 +88,7 @@ class TcadminApi {
             'user_email'            => $client->email,
             'user_fname'            => $client->first_name,
             'user_lname'            => $client->last_name,
-            // Option options, removed to increase performance
+            // Optional options
             /*'user_address1'         => $client->address1,
             'user_address2'         => $client->address2,
             'user_city'             => $client->city,
@@ -357,13 +357,13 @@ class TcadminApi {
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, /*http_build_query(*/$fields/*)*/);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($fields));
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Expect:', 'Accept-Charset: UTF-8'));
         $data = curl_exec($ch);
 
         if($data === FALSE)
         {
-            $this->log("0\t\t-1\tCurl error: " . curl_error($ch) . " Url: " . curl_getinfo ( $ch,  CURLINFO_EFFECTIVE_URL), "cURL Error", false);
+            $this->log("0\t\t-1\tCurl error: " . curl_error($ch) . " Url: " . curl_getinfo ($ch,  CURLINFO_EFFECTIVE_URL), "cURL Error", false);
         }
 
         curl_close($ch);

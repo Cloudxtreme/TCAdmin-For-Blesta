@@ -3,7 +3,7 @@
 			<tbody>
 				<tr>
 					<td></td>
-					<td><a href="<?php $this->Html->_($module_row->meta->hostname);?>" target="_BLANK">Login to TCAdmin</a></td>
+					<td><a href="<?php $this->Html->_($module_row->meta->hostname);?>" target="_BLANK">Login to control panel</a></td>
 				</tr>
 			</tbody>
 		</table>

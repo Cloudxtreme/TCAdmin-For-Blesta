@@ -39,7 +39,7 @@ $lang['Tcadmin.service_info.ip_address'] = "Primary IP Address";
 $lang['Tcadmin.service_info.manage'] = "Manage";
 
 // Client Service Info
-$lang['Tcadmin.tab.tcadmin'] = "TCAdmin";
+$lang['Tcadmin.tab.tcadmin'] = "Control Panel";
 
 // Tooltips
 $lang['Tcadmin.!tooltip.hostname'] = "Full URL address to your TCAdmin installation, including the ending slash. Example: http://127.0.0.1:8880/";

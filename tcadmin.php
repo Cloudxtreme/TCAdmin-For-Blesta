@@ -11,7 +11,7 @@
  * @link http://help.tcadmin.com/Billing_API_Examples
  */
 class Tcadmin extends Module {
-	/**1
+	/**
 	 * Initializes the module
 	 */
 	public function __construct() {
@@ -77,6 +77,8 @@ class Tcadmin extends Module {
     		'module' => $module->getEmailTags(),
     		'package' => $package->getEmailTags(),
     		'service' => array(
+                "tcadmin_username", // The clients username
+                "tcadmin_password", // The clients password
                 "tcadmin_slots", 
                 "tcadmin_service_id", 
                 "game_hostname", 
@@ -291,7 +293,7 @@ class Tcadmin extends Module {
      * @return string The key used to identify the primary field from the set of module row meta fields
      */
     public function moduleRowMetaKey() {
-    	return "server_name";
+    	return "hostname";
     }
 
     /**
