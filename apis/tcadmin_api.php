@@ -139,7 +139,8 @@ class TcadminApi {
             }
             else
             {
-                $this->log("Successfully created service for user " . $response->returntext . ". (ReturnCode: " . $response->returncode . ")", "CreateServer", true);
+                $this->log("Successfully created service for user " . $response->returntext . ". (ReturnCode: " . $response->returncode . "); Additional Information: User: " . $tc_user . ", Hostname: " . (isset($vars['configoptions']['game_hostname']) ? $vars['configoptions']['game_hostname'] : $vars['game_hostname']) . "", "CreateServer", true);
+
             }
         }
 
