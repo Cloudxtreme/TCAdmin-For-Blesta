@@ -11,7 +11,7 @@ This module should not be used yet.
 TCAdmin - The Game Hosting Control Panel
 
 @author Jamie Sage
-@link https://www.jamies-servers.co.uk
+@link http://www.jamiesage.co.uk/
 
 With thanks to the Blesta team and TCAdmin
 @link http://www.blesta.com/
